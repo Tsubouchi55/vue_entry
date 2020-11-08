@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Vue.js入門</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/v-tooltip"></script>
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+  <div id="app">
+    <h1 v-tooltip="'ツールチップ'">{{ message }}</h1>
+
+    <div>
+      <h2>v-if,v-forの使用</h2>
+      <ol>
+        <li v-if="seen" v-for="todo in todos">{{ todo.text }}</li>
+      </ol>
+    </div>
+
+    <div>
+      <h2>テーブルにユーザー追加と同一チェック</h2>
+      <input type="text" ref="newName" />
+      <button v-on:click="doAdd">追加</button>
+      <p class="error" v-if="error">既に登録済みです。</p>
+
+      <table class="table-borderd">
+        <thead class="thead-dark">
+          <tr>
+            <th id="table-id">ID</th>
+            <th id="table-name">Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="user in users">
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <script src="index.js"></script>
+</body>
