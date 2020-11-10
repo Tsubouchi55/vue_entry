@@ -4,42 +4,64 @@
   <title>Vue.js入門</title>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://unpkg.com/v-tooltip"></script>
-  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="index.css" />
 </head>
 
 <body>
   <div id="app">
     <h1 v-tooltip="'ツールチップ'">{{ message }}</h1>
+  </div>
 
-    <div>
-      <h2>v-if,v-forの使用</h2>
-      <ol>
-        <li v-if="seen" v-for="todo in todos">{{ todo.text }}</li>
-      </ol>
-    </div>
+  <div id="app-1">
+    <h2>v-if,v-forの使用</h2>
+    <ol>
+      <li v-if="seen" v-for="todo in todos">{{ todo.text }}</li>
+    </ol>
+  </div>
 
-    <div>
-      <h2>テーブルにユーザー追加と同一チェック</h2>
-      <input type="text" ref="newName" />
-      <button v-on:click="doAdd">追加</button>
-      <p class="error" v-if="error">既に登録済みです。</p>
+  <div id="app-2">
+    <h2>テーブルにユーザー追加と同一チェック</h2>
+    <input type="text" ref="newName" />
+    <button v-on:click="doAdd">追加</button>
+    <p class="error" v-if="error">既に登録済みです。</p>
 
-      <table class="table-borderd">
-        <thead class="thead-dark">
-          <tr>
-            <th id="table-id">ID</th>
-            <th id="table-name">Name</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="user in users">
-            <td>{{ user.id }}</td>
-            <td>{{ user.name }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <table class="table-borderd">
+      <thead class="thead-dark">
+        <tr>
+          <th id="table-id">ID</th>
+          <th id="table-name">Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="user in users">
+          <td>{{ user.id }}</td>
+          <td>{{ user.name }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
+  <div id="app-3">
+    <h2>コンポーネントの作成</h2>
+    <ol>
+      <todo-item
+        v-for="item in groceryList"
+        v-bind:todo="item"
+        v-bind:key="item.id"
+      ></todo-item>
+    </ol>
+  </div>
+
+  <div id="component-demo">
+    <button-counter></button-counter>
+    <button-counter></button-counter>
+  </div>
+
+  <div id="component-prop">
+    <h2>子コンポーネントへのデータの受け渡し</h2>
+    <blog-post title="My journey with Vue"></blog-post>
+    <blog-post title="Blogging with Vue"></blog-post>
+    <blog-post title="My Vue is so fun"></blog-post>
   </div>
 
   <script src="index.js"></script>
