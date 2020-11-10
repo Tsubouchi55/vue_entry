@@ -63,8 +63,8 @@ new Vue({
       { id: 0, text: "meet" },
       { id: 1, text: "fish" },
       { id: 2, text: "egg" },
-    ],
-  },
+    ]
+  }
 });
 
 Vue.component("button-counter", {
