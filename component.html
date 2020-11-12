@@ -1,12 +1,40 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>Vue.js入門</title>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-</head>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>component入門</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
 
-<body>
-  <div id="app-flag"></div>
-</body>
+  <body>
+    <div id="app-user">
+      <ol>
+        <user-item
+          v-for="user in users"
+          v-bind:user="user"
+          v-bind:key="user.id"
+        ></user-item>
+      </ol>
+    </div>
+
+    <div id="app-table">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>NAME</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr is="user-table"
+            v-for="user in users"
+            v-bind:user="user"
+            v-bind:key="user.id"
+          ></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script src="component.js"></script>
+  </body>
 </html>
