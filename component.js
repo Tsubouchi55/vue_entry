@@ -1,19 +1,3 @@
-Vue.component('user-item', {
-  props: ['user'],
-  template: '<li>{{ user.name }}</li>'
-})
-
-new Vue({
-  el: "#app-user",
-  data: {
-    users: [
-      {id: 001, name: "AAA"},
-      {id: 002, name: "BBB"},
-      {id: 003, name: "CCC"},
-    ]
-  }
-});
-
 Vue.component('user-table', {
   props: ['user'],
   template: '\
@@ -24,13 +8,47 @@ Vue.component('user-table', {
     '
 })
 
-new Vue({
+var apptable = new Vue({
   el: "#app-table",
   data: {
     users: [
-      {id: 001, name: "ABC"},
-      {id: 002, name: "DEF"},
-      {id: 003, name: "GHI"},
+      {id: 001, name: "Sato"},
+      {id: 002, name: "Tanaka"},
+      {id: 003, name: "Suzuki"},
     ]
   }
 });
+
+Vue.component('input-form', {
+  props: ['form'],
+  template: '\
+  <form>\
+    <input type="text" ref="newName">\
+    <button v-on:click="doAdd">Add</button>\
+  </form>\
+    '
+});
+
+var appform = new Vue({
+  el: "#app-form",
+
+  methods: {
+    doAdd: function() {
+      var newName = this.$refs.newName;
+      var usersLen = this.users.length + 1;
+      if (!newName.value.length) {
+        return;
+      }
+      if (!this.users.some((e) => e.name == newName.value)) {
+        this.users.push({
+          id: ("000" + usersLen).slice(-3),
+          name: newName.value,
+        });
+        this.error = false;
+        newName.value = "";
+      } else {
+        this.error = true;
+      }
+    },
+  }
+})

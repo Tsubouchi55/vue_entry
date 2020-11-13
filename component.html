@@ -7,26 +7,22 @@
   </head>
 
   <body>
-    <div id="app-user">
-      <ol>
-        <user-item
-          v-for="user in users"
-          v-bind:user="user"
-          v-bind:key="user.id"
-        ></user-item>
-      </ol>
+
+    <div id="app-form">
+      <input-form></input-form>
     </div>
 
     <div id="app-table">
       <table>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>NAME</th>
+            <th scope="col">ID</th>
+            <th scope="col">NAME</th>
           </tr>
         </thead>
         <tbody>
-          <tr is="user-table"
+          <tr
+            is="user-table"
             v-for="user in users"
             v-bind:user="user"
             v-bind:key="user.id"
