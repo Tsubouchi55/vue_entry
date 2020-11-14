@@ -28,27 +28,29 @@ Vue.component('input-form', {
   </form>\
     '
 });
-
+//メソッドを後から追加しているからダメっぽい
+//コンポーネントにメソッドを追加できないか検証
 var appform = new Vue({
   el: "#app-form",
 
   methods: {
     doAdd: function() {
       var newName = this.$refs.newName;
-      var usersLen = this.users.length + 1;
+      var usersLen = apptable.users.length + 1;
       if (!newName.value.length) {
         return;
       }
-      if (!this.users.some((e) => e.name == newName.value)) {
-        this.users.push({
+      if (!apptable.users.some((e) => e.name == newName.value)) {
+        apptable.users.push({
           id: ("000" + usersLen).slice(-3),
           name: newName.value,
         });
-        this.error = false;
+        // this.error = false;
         newName.value = "";
-      } else {
-        this.error = true;
       }
+      // } else {
+      //   this.error = true;
+      // }
     },
   }
 })
