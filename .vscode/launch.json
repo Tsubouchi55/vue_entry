@@ -9,8 +9,9 @@
       "request": "launch",
       "name": "Launch Chrome against localhost",
       // "url": "http://localhost:8080",
-      "url": "http://localhost:5501",
+      "url": "http://localhost:5501/component.html",
       "webRoot": "${workspaceFolder}"
+      // "webRoot": "C:/workspace/vue_entry/component.html"
     }
   ]
 }
