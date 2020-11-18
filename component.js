@@ -1,9 +1,9 @@
-Vue.component('input-form', {
-  props: ['form'],
+Vue.component('user-form', {
   template: `
-  <form>
-    <input type="text" ref="newName">
-    <button v-on:click="doAdd">Add</button>
+  <form v-on:submit.prevent="doAdd">
+    <label for="new-user">Add a user</label>
+    <input type="text" ref="newName" id="new-user">
+    <button>Add</button>
   </form>
   `,
   methods: {
@@ -12,26 +12,6 @@ Vue.component('input-form', {
     }
   }
 });
-
-var appForm = new Vue({
-  el: "#app-form",
-  methods: {
-    handleAdd: function(newName) {
-      alert("イベントキャッチ")
-      // var newName = this.$refs.newName.value;
-      var newId = appTable.users.length + 1;
-      if (!newName.length) {
-        return;
-      }
-      if (!appTable.users.some((e) => e.name == newName)) {
-        appTable.users.push ({
-          id: (000 + newId).slice(-3),
-          name: newName
-        });
-      }
-    }
-  }
-})
 
 Vue.component('user-table', {
   props: ['user'],
@@ -43,13 +23,27 @@ Vue.component('user-table', {
     `
 })
 
-var appTable = new Vue({
-  el: "#app-table",
+var appForm = new Vue({
+  el: "#app",
   data: {
     users: [
-      {id: 001, name: "Sato"},
-      {id: 002, name: "Tanaka"},
-      {id: 003, name: "Suzuki"},
+      { id: "001", name: "Sato" },
+      { id: "002", name: "Tanaka" },
+      { id: "003", name: "Suzuki" },
     ]
+  },
+  methods: {
+    handleAdd: function(newName) {
+      var newId = this.users.length + 1;
+      if (!newName.length) {
+        return;
+      }
+      if (!this.users.some((e) => e.name == newName)) {
+        this.users.push ({
+          id: ("000" + newId).slice(-3),
+          name: newName
+        });
+      }
+    }
   }
-});
+})
